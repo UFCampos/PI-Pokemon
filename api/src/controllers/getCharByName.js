@@ -1,6 +1,6 @@
 const axios = require('axios');
 const { Pokemon, Type } = require('../../src/db.js');
-const toLowerCase = require('../helpers/toLowerCase.js');
+const {Op} = require('sequelize');
 
 const {URL} = require('../utils/api_urls');
 
@@ -9,7 +9,7 @@ const getCharByName = async (req) => {
 
     const pokemonDB = await Pokemon.findAll({
         where: {
-            name: nameToLowerCase
+            name: {[Op.iLike]: `%${nameToLowerCase}%`}  
         },
         include: [{
             model: Type,
