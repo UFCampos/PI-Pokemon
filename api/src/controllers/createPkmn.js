@@ -1,30 +1,27 @@
-const {Pokemon, Type} = require('../db.js');
+const { Pokemon} = require('../db.js');
+const addPokemonTypes = require('../helpers/addType.js');
 
-const createPkmn = async (req) => {
+async function createPkmn(req) {
     const { name, image, hp, attack, defense, speed, height, weight, types } = req.body;
-    const pokemon = await Pokemon.create({
-        name,
-        image,
-        hp,
-        attack,
-        defense,
-        speed,
-        height,
-        weight,
-    })
 
-    //types is an array of strings, I need to add each type to the pokemon
-    if(types) types.forEach(async pktype => {
-        const newType = await Type.findOrCreate({
-            where: {
-                name: pktype
-            },
-            defaults: {
-                name: pktype
-            }
-        })
-        pokemon.addType(newType[0])
-    });
+    try {
+        const pokemon = await Pokemon.create({
+            name,
+            image,
+            hp,
+            attack,
+            defense,
+            speed,
+            height,
+            weight,
+        });
+
+        await addPokemonTypes(pokemon, types);
+
+        return pokemon;
+    } catch (error) {
+        throw new Error('Error creating Pokemon: ' + error.message);
+    }
 }
 
-module.exports = createPkmn
+module.exports = createPkmn;
