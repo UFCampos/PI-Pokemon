@@ -34,9 +34,9 @@ pokemonsRouter.post('/', async (req, res) => {
 pokemonsRouter.get('/:id', async (req, res) => {
     try {
         const pokemon = await getCharById(req.params.id);
-        // if (!pokemon) {
-        //     return res.status(404).json({ message: 'Pokemon not found' });
-        // }
+        if (!pokemon.name) {
+            return res.status(404).json({ message: `No existe un pokemon con el id ${req.params.id}` });
+        }
         res.status(200).json(pokemon);
     } catch (error) {
         res.status(500).send(error.message); // Use 500 for internal server errors

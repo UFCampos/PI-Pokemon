@@ -20,6 +20,7 @@ async function getCharByName(req) {
         include: ['types']
     });
 
+    // If pokemonDB is an empty object, try to fetch from the external API
     if (!pokemonDB) {
         try {
             // Fetch character information from the external API
