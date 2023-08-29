@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { Pokemon } = require('../db');
+const { Pokemon, Type } = require('../db');
 const { fetchPokemonData } = require('../helpers/apiHelpers');
 
 /**
@@ -12,27 +12,33 @@ const { fetchPokemonData } = require('../helpers/apiHelpers');
 async function getCharById(reqId) {
     // Check if the provided ID is numeric
     if (isNaN(reqId)) {
-        try {
-            // Fetch character information from the local database
-            const pokemonDB = await Pokemon.findOne({ where: { id: reqId }, include: ['types'] });
-
-            if (!pokemonDB) {
-                throw new Error(`No existe un pokemon con el id ${reqId}`);
-            }
-            return pokemonDB
-        } catch (error) {
-            throw new Error(`No existe un pokemon con el id ${reqId}`);
+        //Fetch character information from the local database
+        const pokemon = await Pokemon.findOne({
+            where: {
+                id: reqId
+            },
+            include: [{
+                model: Type,
+                as: 'types',
+                through: {
+                    attributes: []
+                }}
+            ]
+        });
+        if (!pokemon) {
+            throw new Error('No existe un pokemon con ese id');
         }
+        return pokemon;
     }
 
     
-    try {
-        // Fetch character information from the external API
-        const data = await fetchPokemonData(reqId);
-        
+    // Fetch character information from the external API
+    const data = await fetchPokemonData(reqId);
+    
+    if (data.name) {
         // Extract relevant data from the API response
         const { name, id, is_default, sprites, species, gender, forms, height, weight } = data;
-
+    
         // Create a character object
         const pokemon = {
             name,
@@ -45,12 +51,11 @@ async function getCharById(reqId) {
             height,
             weight
         };
-
+    
         return pokemon;
-    } catch (error) {
-        throw new Error(`No existe un pokemon con el id ${reqId}`);
-
     }
+
+    throw new Error('No existe un pokemon con ese id');
 }
 
 module.exports = getCharById;

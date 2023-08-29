@@ -50,7 +50,7 @@ describe('Pokemon routes', () => {
         })
         .expect(201)
         .then((res) => {
-          expect(res.body.message).to.equal('The new pokemon has been created successfully');
+          expect(res.body.message).to.equal(`The new pokemon Charmander has been created successfully`);
         })
     );
     

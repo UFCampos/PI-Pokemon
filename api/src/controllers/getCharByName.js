@@ -17,7 +17,7 @@ async function getCharByName(req) {
         where: {
             name: { [Op.iLike]: `%${reqName}%` }
         },
-        include: ['types']
+        include: [{ model: Type, as: 'types', through: { attributes: [] } }]
     });
 
     // If pokemonDB is an empty object, try to fetch from the external API
