@@ -11,12 +11,15 @@ pokemonsRouter.get('/', async (req, res) => {
     try {
         if (req.query.name) {
             const pokemon = await getCharByName(req);
+            if(!pokemon.name){
+                throw new Error('No existe un pokemon con ese nombre');
+            }
             return res.status(200).json(pokemon);
         }
         const pokemons = await getPokemons();
         res.status(200).json(pokemons);
     } catch (error) {
-        res.status(500).send(error.message); // Use 500 for internal server errors
+        res.status(404).send(error.message); // Use 404 for not found
     }
 });
 

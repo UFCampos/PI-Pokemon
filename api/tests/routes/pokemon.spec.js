@@ -75,7 +75,7 @@ describe('Pokemon routes', () => {
     );
     
     it('should return 404 for a non-existent pokemon ID', () =>
-      agent.get('/pokemons/999')
+      agent.get('/pokemons/1500')
         .expect(404)
     );
   });

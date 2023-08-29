@@ -1,4 +1,4 @@
-const { Pokemon, Type } = require('../db.js');
+const { Type } = require('../db.js');
 
 async function addPokemonTypes(pokemon, types) {
     if (types) {
