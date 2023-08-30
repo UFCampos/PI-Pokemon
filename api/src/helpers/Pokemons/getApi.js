@@ -1,44 +1,40 @@
 const axios = require('axios');
-const {URL} = require('../../utils/api_urls');
+const { URL } = require('../../utils/api_urls');
 
 const getApi = async () => {
-    
     const { data } = await axios(URL);
+
+    // Use Promise.all to concurrently fetch data for each Pokémon
     const responses = await Promise.all(
         data.results.map((pokemon) => axios(pokemon.url))
     );
 
-    //Fetch data for each response 
+    // Map the responses to the desired format
     const pokemonData = responses.map((response) => {
-     let { name, id, stats, sprites, types, gender, height, weight} = response.data;
+        const { name, id, stats, sprites, types, gender, height, weight } = response.data;
+        const allTypes = types.map((type) => ({ name: type.type.name }));
+        const img = sprites.other.dream_world.front_default || sprites.front_default;
 
+        return {
+            name,
+            id,
+            img,
+            height,
+            weight,
+            hp: stats[0].base_stat,
+            attack: stats[1].base_stat,
+            defense: stats[2].base_stat,
+            speed: stats[5].base_stat,
+            types: allTypes,
+            gender,
+        };
+    });
 
-     //Map each type to its name
-     let allTypes = types.map((type) => ({ name: type.type.name }));
-
-    //Get appropiate image
-     let img = sprites.other.dream_world.front_default ? sprites.other.dream_world.front_default : sprites.front_default;
-
-     return {
-         name,
-         id,
-         img,
-         height,
-         weight,
-         hp: stats[0].base_stat,
-         attack: stats[1].base_stat,
-         defense: stats[2].base_stat,
-         speed: stats[5].base_stat,
-         types: allTypes,
-         gender 
-     }
-        }
-    );
-
-    if(pokemonData[0].name){
+    if (pokemonData[0].name) {
         return pokemonData;
     }
-     
-}
 
-module.exports = getApi
+    throw new Error('No hay pokemons en la API');
+};
+
+module.exports = getApi;
