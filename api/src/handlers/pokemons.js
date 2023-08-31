@@ -17,8 +17,9 @@ const postPokemon = async (req, res) => {
 
 const getAllPokemons = async (req, res) => {
     try {
-        if (req.query.name) {
-            const pokemon = await getCharByName(req);
+        const name = req.query.name;
+        if (name) {
+            const pokemon = await getCharByName(name);
             if(!pokemon.name){
                 throw new Error('No existe un pokemon con ese nombre');
             }

@@ -9,8 +9,8 @@ const { fetchPokemonData } = require('../helpers/apiHelpers.js');
  * @param {Object} req - The request object containing the query parameter "name".
  * @returns {Promise<Object>} - The character information.
  */
-async function getCharByName(req) {
-    const reqName = req.query.name.toLowerCase();
+async function getCharByName(reqName) {
+    reqName.toLowerCase();
 
     // Try to find the character in the local database
     const pokemonDB = await Pokemon.findOne({
@@ -27,23 +27,23 @@ async function getCharByName(req) {
             const data = await fetchPokemonData(reqName);
             
             // Extract relevant data from the API response
-            const { name, id, is_default, sprites, species, gender, forms, abilities, location_area_encounters, game_indices, moves, height, weight } = data;
+            const { name, id, sprites, height, weight, stats, types, gender } = data;
+            const img = sprites.other.dream_world.front_default || sprites.front_default;
+            const allTypes = types.map((type) => ({ name: type.type.name }));
 
             // Create a character object
             const pokemon = {
                 name,
                 id,
-                is_default,
-                sprites,
-                species,
-                gender,
-                forms,
-                abilities,
-                location_area_encounters,
-                game_indices,
-                moves,
+                img,
+                height,
                 weight,
-                height
+                hp: stats[0].base_stat,
+                attack: stats[1].base_stat,
+                defense: stats[2].base_stat,
+                speed: stats[5].base_stat,
+                types: allTypes,
+                gender,
             };
 
             return pokemon;
