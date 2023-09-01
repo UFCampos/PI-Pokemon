@@ -9,9 +9,9 @@ async function createPkmn(name, image, hp, attack, defense, speed, height, weigh
         hp,
         attack,
         defense,
+        image
     });
 
-    image && (await pokemon.update({ image }));
     height && (await pokemon.update({ height }));
     weight && (await pokemon.update({ weight }));
     speed && (await pokemon.update({ speed }));

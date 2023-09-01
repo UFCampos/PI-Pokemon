@@ -8,7 +8,6 @@ const postPokemon = async (req, res) => {
     try {
         const { name, image, hp, attack, defense, speed, height, weight, types } = req.body;
         const pokemon = await createPkmn(name, image, hp, attack, defense, speed, height, weight, types);
-        console.log(pokemon);
         res.status(201).json({ message: `The new pokemon ${pokemon} has been created successfully` });
     } catch (error) {
         res.status(400).send(error.message); // Use 400 for bad requests

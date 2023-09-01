@@ -1,0 +1,48 @@
+.navfix {
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-height: 70px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem;
+  background-color: #333;
+  color: #fff;
+  width: 100%;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+}
+
+.banner {
+  font-size: 3rem;
+}
+
+.navbar-nav {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  gap: .5rem;
+}
+
+
+.navbar-item {
+  font-size: 1.2rem;
+}
+
+.navbar-item a {
+  color: #fff;
+  text-decoration: none;
+  padding:0;
+  margin: 0;
+  border-radius: 5px;
+  box-sizing: content-box;
+}
+
+.navbar-item a:hover {
+  background-color: #555;
+}
