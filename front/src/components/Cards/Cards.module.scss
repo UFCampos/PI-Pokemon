@@ -1,0 +1,17 @@
+@import '../../../public/variables';
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  align-items: start;
+  flex-wrap: wrap;
+  margin-top: 3.5rem;
+  padding: 1rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  gap: 1rem; 
+  background-color: darken($jet, 10);
+}
+
+.container::-webkit-scrollbar{
+  display: none;
+}

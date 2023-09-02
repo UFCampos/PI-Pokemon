@@ -1,15 +1,17 @@
 import { NavLink } from "react-router-dom";
-import styles from './Nav.module.css';
+import styles from './Nav.module.scss';
 import SearchBar from '../SearchBar/SearchBar';
+import { useLocation } from "react-router-dom";
 
 const Nav = () => {
+    const {pathname} = useLocation();
     return (
         <div>
             <div className={styles.navfix}>
                 <div className={styles.navbar}>
                     <div className={styles['navbar-nav']}>
-                        <button className={styles['navbar-item']}><NavLink to={'/about'}>About Me</NavLink></button>
-                        <button className={styles['navbar-item']}><NavLink to={'/home'}>Home</NavLink></button>
+                        <NavLink to="/home" ><button disabled={pathname === '/home'} className={styles['navbar-item']}>Home</button></NavLink>
+                        <NavLink to="/about" ><button disabled={pathname === '/about'} className={styles['navbar-item']}>About me</button></NavLink>
                     </div>
                     <SearchBar />
                 </div>

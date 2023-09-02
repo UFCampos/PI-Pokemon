@@ -1,13 +1,31 @@
+  @import '../public/variables';
+  
   #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background-color: lighten($jet, 10);
+  color: $melon;
+  a{
+    text-decoration: none;
+  }
+}  
+button {
+  background-color: darken($coral, 20);
+  color: white;
+  border: none; 
+  outline: none;
+  border-radius: .3rem;
+  padding: .5rem;
+  cursor: pointer;
+  margin-left: .2rem;
+  font-size: 1.2rem;
+  transition: hover 1s;  
+  &:hover {
+    background-color: darken($spring-green, 30);
+  }
+  &:disabled {
+    background-color: lighten($coral, 10);
+  }
 }
-
-// $jet: hsla(60, 3%, 17%, 1);
-// $office-green: hsla(113, 55%, 29%, 1);
-// $melon: hsla(11, 100%, 85%, 1);
-// $coral: hsla(16, 95%, 69%, 1);
-// $spring-green: hsla(150, 97%, 56%, 1);
-

@@ -1,0 +1,15 @@
+@import '../../../public/variables';
+    
+.search {
+  background-color: $coral; 
+  border-radius: 10px;
+  padding: 5px 10px;
+  input {
+    border: none;
+    outline: none;
+    background-color: white;
+    color: $jet;
+    font-size: 1rem;
+  }
+}
+

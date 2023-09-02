@@ -1,18 +1,34 @@
-import styles from './Cards.module.css'
+import styles from './Cards.module.scss'
 import Card from '../Card/Card'
-import axios from 'axios'
-import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import { useState } from 'react'
 
 
 const Cards = () => {
-    console.log(useSelector(state => state));
-    const pokemons = useSelector(state => state.allPokes)
+    const allPokemons = useSelector(state => state.allPokes)
+    //pagination of allPokemons, 12 items per page
+    const [currentPage, setCurrentPage] = useState(1) 
+    const pokemonsPerPage = 12
+    const indexOfLastPokemon = currentPage * pokemonsPerPage
+    const indexOfFirstPokemon = indexOfLastPokemon - pokemonsPerPage
+    const pagedPokemons = allPokemons.slice(indexOfFirstPokemon, indexOfLastPokemon)
+    
+    //calculation for first and last page
+    const lastPage = Math.ceil(allPokemons.length / pokemonsPerPage)
+
+    const handlePageChange = (page) => {
+        setCurrentPage(page)
+    }
+
     return (
         <div className={styles.container}>
-            {pokemons.map((pokemon) => {
+            {pagedPokemons.map((pokemon) => {
                 return <Card key={pokemon.id} {...pokemon} />
             })}
+            <div className={styles.pagination}>
+                <button onClick={() => {handlePageChange(currentPage - 1)}} disabled={currentPage === 1}>Anterior</button>
+                <button onClick={() => {handlePageChange(currentPage + 1)}} disabled={currentPage === lastPage}>Siguiente</button>
+            </div>
         </div>
     )
 }

@@ -15,7 +15,8 @@ module.exports = (sequelize) => {
       primaryKey: true,
     },
     image: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull: false
     },
     hp: {
       type: DataTypes.INTEGER,

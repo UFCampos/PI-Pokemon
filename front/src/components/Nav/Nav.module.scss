@@ -1,3 +1,6 @@
+@import '../../../public/variables';
+  
+
 .navfix {
   position: fixed;
   display: flex;
@@ -12,7 +15,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.4rem;
-  background-color: #333;
+  background-color: $coral;
   color: #fff;
   width: 100%;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
@@ -32,17 +35,18 @@
 
 .navbar-item {
   font-size: 1.2rem;
-}
-
-.navbar-item a {
-  color: #fff;
-  text-decoration: none;
-  padding:0;
-  margin: 0;
-  border-radius: 5px;
-  box-sizing: content-box;
-}
-
-.navbar-item a:hover {
-  background-color: #555;
+  &:disabled{
+    background-color: lighten($office-green, 20);
+  }
+  a {
+    color: #fff;
+    text-decoration: none;
+    padding:0;
+    margin: 0;
+    border-radius: 5px;
+    box-sizing: content-box;
+    &:hover {
+      background-color: $spring-green;
+    }
+  }
 }

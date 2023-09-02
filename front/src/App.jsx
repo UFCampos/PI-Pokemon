@@ -1,10 +1,6 @@
 import './App.scss'
 import { Routes, Route } from 'react-router-dom'
 import { useLocation } from 'react-router-dom';
-import { storePokes } from './redux/actions';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-
 //Importing all components
 import Home from './components/Home/Home'
 import Landing from './components/Landing/Landing'
@@ -24,7 +20,7 @@ const App = () => {
     <Routes>
       <Route path="/" element={<Landing />} />
       <Route path="/home" element={<Home />} />
-      <Route path="/detail/:id" element={<Detail />} />
+      <Route path="/pokemon/:id" element={<Detail />} />
     </Routes>
     </>
   )

@@ -10,3 +10,30 @@ export const storePokes = () => {
       })
    };
 };
+
+export const openModal = () => ({
+   type: 'OPEN_MODAL',
+ });
+ 
+ export const closeModal = () => ({
+   type: 'CLOSE_MODAL',
+ });
+
+ export const fetchContent = (query) => {
+   return async (dispatch) => {
+      //regex to check for all numbers and A-Z
+      const check = /^[a-zA-Z0-9]+$/;
+      if (!check.test(query)) {
+         return dispatch ({
+            type: "MODAL_CONTENT",
+            payload: {} 
+         })
+      }
+      const endpoint = `http://localhost:3001/pokemons?name=${query}`;
+      const response = await axios(endpoint);
+      return dispatch({
+         type: "MODAL_CONTENT",
+         payload: response.data
+      });
+   };
+ }

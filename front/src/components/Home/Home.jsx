@@ -11,8 +11,7 @@ const Home = () => {
     },[]);
   
     return (
-        <div>Home
-            <Link to="/about">About</Link>  
+        <div>
             <Cards />
         </div>
     )
