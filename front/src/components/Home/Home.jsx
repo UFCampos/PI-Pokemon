@@ -7,9 +7,10 @@ import { storePokes } from "../../redux/actions";
 const Home = () => {
     const dispatch = useDispatch();
     useEffect(() => {
-      dispatch(storePokes());
-    },[]);
-  
+        document.title = "Home"
+        dispatch(storePokes());
+    }, []);
+
     return (
         <div>
             <Cards />

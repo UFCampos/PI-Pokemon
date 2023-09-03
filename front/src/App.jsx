@@ -6,6 +6,7 @@ import Home from './components/Home/Home'
 import Landing from './components/Landing/Landing'
 import Nav from './components/Nav/Nav'
 import Detail from './components/Detail/Detail'
+import About from './components/About/About'
 /* ------------------------------ */
 
 //Importing all functions
@@ -21,6 +22,7 @@ const App = () => {
       <Route path="/" element={<Landing />} />
       <Route path="/home" element={<Home />} />
       <Route path="/pokemon/:id" element={<Detail />} />
+      <Route path="/about" element={<About />} />
     </Routes>
     </>
   )
