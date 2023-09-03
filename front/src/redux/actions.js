@@ -36,4 +36,24 @@ export const openModal = () => ({
          payload: response.data
       });
    };
- }
+}
+
+export const filterByType = (type) => {
+   return (dispatch) => {
+      dispatch({
+         type: "FILTER_BY_TYPE",
+         payload: type
+      });
+   }
+}
+
+export const fetchTypes = () => {
+   return async (dispatch) => {
+      const endpoint = 'http://localhost:3001/types';
+      const response = await axios(endpoint);
+      return dispatch({
+         type: "FETCH_TYPES",
+         payload: response.data
+      });
+   };
+}

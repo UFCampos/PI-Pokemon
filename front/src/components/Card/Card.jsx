@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 const Card = ({name, id, img, types}) => {
 
     const eachType = types.map(type => type.name)
+    
 
     return (
         <div className={styles['card-wrap']}>

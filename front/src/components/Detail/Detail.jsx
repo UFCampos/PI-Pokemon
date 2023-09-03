@@ -13,7 +13,6 @@ const Detail = () => {
     useEffect(() => {
         dispatch(fetchContent(id))
         return () => {
-            console.log('cleanup');
             dispatch(fetchContent(''))
         }
     },[id])

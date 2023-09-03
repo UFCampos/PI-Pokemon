@@ -1,7 +1,9 @@
 const initialState = {
     allPokes: [],
     isModalOpen: false,
-    modalContent: []
+    modalContent: [],
+    allTypes: [],
+    filteredPokemons: []
 }
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -25,6 +27,23 @@ const reducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 modalContent: payload
+            };
+        case 'FETCH_TYPES':
+            return {
+                ...state,
+                allTypes: payload
+            };
+        case 'FILTER_BY_TYPE':
+            const filteredPokemons = state.allPokes.filter(pokemon => {
+                for (const type of pokemon.types) {
+                    if (type.name === payload) {
+                        return pokemon
+                    }
+                }
+            });
+            return {
+                ...state,
+                filteredPokemons: filteredPokemons
             }
         default:
             return {...state}
