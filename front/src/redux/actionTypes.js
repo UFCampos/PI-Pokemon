@@ -1,0 +1,10 @@
+//ActionTypes
+export const FETCH_TYPES = 'FETCH_TYPES'
+export const FILTER_BY_TYPE = 'FILTER_BY_TYPE'
+export const STORE_POKES = 'STORE_POKES'
+export const OPEN_MODAL = 'OPEN_MODAL'
+export const CLOSE_MODAL = 'CLOSE_MODAL'
+export const MODAL_CONTENT = 'MODAL_CONTENT'
+export const PAGED_POKEMONS = 'PAGED_POKEMONS'
+export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
+export const SORT_BY_NAME = 'SORT_BY_NAME'

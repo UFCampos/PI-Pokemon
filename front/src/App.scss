@@ -27,5 +27,6 @@ button {
   }
   &:disabled {
     background-color: lighten($coral, 10);
+    cursor: not-allowed;
   }
 }

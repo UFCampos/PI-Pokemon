@@ -7,6 +7,7 @@ import Landing from './components/Landing/Landing'
 import Nav from './components/Nav/Nav'
 import Detail from './components/Detail/Detail'
 import About from './components/About/About'
+import Form from './components/Form/Form'
 /* ------------------------------ */
 
 //Importing all functions
@@ -23,6 +24,7 @@ const App = () => {
       <Route path="/home" element={<Home />} />
       <Route path="/pokemon/:id" element={<Detail />} />
       <Route path="/about" element={<About />} />
+      <Route path="/create" element={<Form />} />
     </Routes>
     </>
   )
