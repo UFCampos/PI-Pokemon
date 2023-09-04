@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { STORE_POKES, OPEN_MODAL, CLOSE_MODAL, MODAL_CONTENT, FETCH_TYPES, FILTER_BY_TYPE, PAGED_POKEMONS, SET_CURRENT_PAGE, SORT_BY_NAME } from './actionTypes'
+import { STORE_POKES, OPEN_MODAL, CLOSE_MODAL, MODAL_CONTENT, FETCH_TYPES, FILTER_BY_TYPE, PAGED_POKEMONS, SET_CURRENT_PAGE, SORT_BY_NAME } from './action-types'
 
 export const storePokes = () => {
    return async (dispatch) => {

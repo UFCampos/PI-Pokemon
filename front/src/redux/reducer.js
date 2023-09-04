@@ -1,4 +1,4 @@
-import { STORE_POKES, OPEN_MODAL, CLOSE_MODAL, MODAL_CONTENT, FETCH_TYPES, FILTER_BY_TYPE, PAGED_POKEMONS, SET_CURRENT_PAGE, SORT_BY_NAME } from './actionTypes'
+import { STORE_POKES, OPEN_MODAL, CLOSE_MODAL, MODAL_CONTENT, FETCH_TYPES, FILTER_BY_TYPE, PAGED_POKEMONS, SET_CURRENT_PAGE, SORT_BY_NAME } from './action-types'
 
 const initialState = {
     allPokes: [],
@@ -7,7 +7,7 @@ const initialState = {
     allTypes: [],
     filteredPokemons: [],
     pagedPokemons: [],
-    currentPage: null
+    currentPage: 1
 }
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -39,32 +39,29 @@ const reducer = (state = initialState, { type, payload }) => {
                 allTypes: payload
             };
         case FILTER_BY_TYPE:
-            const filteredPokemons = state.allPokes.filter(pokemon => {
+            const newFilteredPokemons = state.allPokes.filter(pokemon => {
                 for (const type of pokemon.types) {
-                    if (type.name === payload) {
+                    if (type.name === payload || payload === 'all') {
                         return pokemon
                     }
                 }
             });
             return {
                 ...state,
-                filteredPokemons: filteredPokemons
+                filteredPokemons: newFilteredPokemons
             }
         case SORT_BY_NAME:
-            const allPokesCopy = [...state.allPokes]
             const filteredPokemonsCopy = [...state.filteredPokemons]
+            console.log(filteredPokemonsCopy);
 
-            allPokesCopy.sort((a, b) => a.name.localeCompare(b.name))
             filteredPokemonsCopy.sort((a, b) => a.name.localeCompare(b.name))
             if (payload === 'desc') {
-                allPokesCopy.reverse()
                 filteredPokemonsCopy.reverse()
             }
 
             return {
                 ...state,
                 filteredPokemons: filteredPokemonsCopy,
-                allPokes: allPokesCopy
             }
         case PAGED_POKEMONS:
             return {

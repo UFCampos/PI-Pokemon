@@ -25,7 +25,7 @@ const Cards = () => {
         if (allPokes.length > 0) {
             setLoadingFlag(false)
         }
-    },[allPokes])
+    },[allPokes, filteredPokemons])
 
 
     const handlePageChange = (page) => {
