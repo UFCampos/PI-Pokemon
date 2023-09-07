@@ -1,7 +1,7 @@
 @import '../../../public/variables';
 
 .container {
-  display: flex;
+  display: grid;
   justify-content: space-around;
   align-items: start;
   flex-wrap: wrap;

@@ -16,10 +16,6 @@ const Filters = () => {
             case 'asc':
             case 'desc':
                 dispatch(sortByName(e.target.value))
-                
-            case 'asc':
-            case 'desc':
-                dispatch(sortByName(e.target.value))
             
             case 'atk_asc':
             case 'atk_desc':

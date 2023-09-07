@@ -1,0 +1,25 @@
+@import '../../../public/variables';
+.container{
+    display: grid;
+    place-items: center;
+    grid-template-rows: repeat(4, 1fr);
+    background-size: cover;
+    background-image: url('https://i.pinimg.com/originals/ef/72/4f/ef724f2c2cf02a434b8464f17fe40ca1.gif');
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    background-position: center;
+    height: 100vh;
+    width : 100vw;
+    position:relative;
+    background-attachment: fixed;
+    text-align: center;
+    h1{
+        background-color: $jet;
+        border-radius: 1rem;
+        padding: 1rem;
+    }
+}
+body{
+    padding: 0;
+}

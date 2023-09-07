@@ -16,7 +16,7 @@ const Modal = ({children }) => {
         <div className={styles.modal}>
             <div className={styles['modal-content']}>                
                 <Link to={`/pokemon/${children.id}`}>
-                <img onClick={handleClose} src={children.img} alt="" />
+                <img onClick={handleClose} src={children.image} alt="" />
                 <h2 onClick={handleClose} className={styles['modal-title']}>{children.name}</h2>
                 </Link>
                 <button onClick={handleClose}>Close</button>

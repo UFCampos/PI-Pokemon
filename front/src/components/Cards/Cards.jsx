@@ -53,9 +53,9 @@ const Cards = () => {
                     />
                 </div>
                 <div className={styles.cards}>
-                    {pagedPokemons.map((pokemon) => {
+                    {pagedPokemons.length? pagedPokemons.map((pokemon) => {
                         return <Card key={pokemon.id} {...pokemon} />;
-                    })}
+                    }) : <h1>No pokemons found</h1>}
                 </div>
                 <Pagination 
                     currentPage={currentPage} 

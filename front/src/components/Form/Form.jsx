@@ -38,6 +38,7 @@ const Form = () => {
         const newPokemon = { name, image, types, hp, attack, defense, speed, height, weight }
         try {
             await axios.post('http://localhost:3001/pokemons', newPokemon)
+            alert('Pokemon creado con éxito')
         } catch (error) {
             alert(error.message)
             console.error(error)
