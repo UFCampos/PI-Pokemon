@@ -85,7 +85,7 @@ const Form = () => {
 
             <div>
                 <label htmlFor="">Imagen: </label>
-                <input type="file" value={pokemon.image} onChange={handleChange} name="image" placeholder='Imagen' />
+                <input type="text" value={pokemon.image} onChange={handleChange} name="image" placeholder='URL de la imagen' />
                 {errors.image && <p>{errors.image}</p>}
             </div>
 
@@ -96,7 +96,7 @@ const Form = () => {
                         return <option value={type.name} key={type.name}>{type.name}</option>
                     })}
                 </select>
-                {pokemon.types && pokemon.types.map((type) => <p onClick={handleDelete} name={type.name} key={type.name}>{type.name}</p>)}
+                {pokemon.types && pokemon.types.map((type) => <button onClick={(e) => handleDelete(e)} name={type.name} key={type.name}>{type.name}</button>)}
                 {errors.types && <p>{errors.types}</p>}
             </div>
 

@@ -1,6 +1,6 @@
 import styles from '../Cards/Cards.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchTypes, filterByType, sortByName, pokemonByStorage } from '../../redux/actions'
+import { fetchTypes, filterByType, sortByName, pokemonByStorage, sortByAttack } from '../../redux/actions'
 import { useEffect } from 'react'
 
 const Filters = () => {
@@ -10,6 +10,25 @@ const Filters = () => {
     },[])
 
     const allTypes = useSelector(state => state.allTypes)
+
+    const handleChange = (e) => {
+        switch (e.target.value) {
+            case 'asc':
+            case 'desc':
+                dispatch(sortByName(e.target.value))
+                
+            case 'asc':
+            case 'desc':
+                dispatch(sortByName(e.target.value))
+            
+            case 'atk_asc':
+            case 'atk_desc':
+                dispatch(sortByAttack(e.target.value))
+        
+            default:
+                break;
+        }
+    }
 
     return (
         <div className={styles['filter-container']}>
@@ -35,10 +54,12 @@ const Filters = () => {
                 </div>
             </div>
 
-            <select name="Sort" onChange={(e) => {dispatch(sortByName(e.target.value))}} >
+            <select name="Sort" onChange={handleChange} >
                 <option value="placeholder">Ordenar por: </option>
                 <option value={'asc'}>A-Z</option>
                 <option value={'desc'}>Z-A</option>
+                <option value={'atk_asc'}>ATK ASC</option>
+                <option value={'atk_desc'}>ATK DESC</option>
             </select>
         </div>
     )

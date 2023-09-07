@@ -35,16 +35,16 @@ const Detail = () => {
             <img src={image} alt={name} />
             <div className={styles.detail}>
                 <h1>{name}</h1>
-                <p className={styles.types}>Types: {eachType.map((type, index) => {
+                <h3 className={styles.types}>Types: {eachType.map((type, index) => {
                     return (
-                        <div>
-                            <span key={index} className={styles.type}>
+                        <div key={index}>
+                            <span key={index} className={styles[`${type}`]}>
                                 {type}
                             </span>
                             <br />
                         </div>
                     )
-                })} </p>
+                })} </h3>
                 <p>HP: {hp} </p>
                 <p>Attack: {attack} </p>
                 <p>Defense: {defense}</p>

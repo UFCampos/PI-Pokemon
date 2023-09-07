@@ -12,9 +12,49 @@
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
   gap: 20vw; 
   background-color: darken($jet, 6);
-  .type{
-    
+  span{
+    color: black
   }
+  .normal{
+    background-color: white;
+  }
+  .fire{
+    background-color: red;
+  }
+  .water{
+    background-color: blue;
+  }
+  .grass{
+    background-color: green;
+  }
+  .electric{
+    background-color: yellow;
+  }
+  .ice{
+    background-color: cyan;
+  }
+  .fighting{
+    background-color: orange;
+  }
+  .poison{
+    background-color: purple;
+  }
+  .ground{
+    background-color: brown;
+  }
+  .flying{
+    background-color: lightblue;
+  }
+  .psychic{
+    background-color: pink;
+  }
+  .bug{
+    background-color: lightgreen;
+  }
+  .rock{
+    background-color: grey;
+  }
+
   .modal{
     position: fixed;
     top: 0;
@@ -44,6 +84,7 @@
       margin: 0;
       font-size: 1.3rem;
       padding: 0.1rem;
+
     img{
         height: 2rem;
         margin-bottom: -.5rem;

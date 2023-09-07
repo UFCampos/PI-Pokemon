@@ -8,6 +8,7 @@ import {
   PAGED_POKEMONS, 
   SET_CURRENT_PAGE, 
   SORT_BY_NAME,
+  SORT_BY_ATTACK,
   POKEMON_BY_STORAGE } from './action-types'
 
 const initialState = {
@@ -83,7 +84,7 @@ const reducer = (state = initialState, { type, payload }) => {
       };
 
     case SORT_BY_NAME:
-      const filteredPokemonsCopy = [...state.filteredPokemons];
+      let filteredPokemonsCopy = [...state.filteredPokemons];
       filteredPokemonsCopy.sort((a, b) => a.name.localeCompare(b.name));
       if (payload === 'desc') {
         filteredPokemonsCopy.sort((a, b) => b.name.localeCompare(a.name));
@@ -92,6 +93,17 @@ const reducer = (state = initialState, { type, payload }) => {
         ...state,
         filteredPokemons: filteredPokemonsCopy,
       };
+
+    case SORT_BY_ATTACK:  
+      let filteredPokemonsCopyAttack = [...state.filteredPokemons];
+      filteredPokemonsCopyAttack.sort((a, b) => a.attack - b.attack);
+      if (payload === 'atk_desc') {
+        filteredPokemonsCopyAttack.sort((a, b) => b.attack - a.attack);
+      }
+      return {
+        ...state,
+        filteredPokemons: filteredPokemonsCopyAttack
+      }
 
     case PAGED_POKEMONS:
       return {

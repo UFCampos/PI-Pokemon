@@ -9,6 +9,7 @@ import {
    PAGED_POKEMONS, 
    SET_CURRENT_PAGE, 
    SORT_BY_NAME,
+   SORT_BY_ATTACK,
    POKEMON_BY_STORAGE } from './action-types'
 
 export const storePokes = () => {
@@ -31,6 +32,14 @@ export const openModal = () => ({
  });
 
  export const fetchContentId = (id) => {
+   if (id === ''){
+      return async (dispatch) => {
+         return dispatch({
+            type: MODAL_CONTENT,
+            payload: {} 
+         })
+      }
+   }
    return async (dispatch) => {
       const endpoint = `http://localhost:3001/pokemons/${id}`;
       const response = await axios(endpoint);
@@ -112,4 +121,11 @@ export const pokemonByStorage = (store) => {
       type: POKEMON_BY_STORAGE,
       payload: store
   }
+}
+
+export const sortByAttack = (order) => {
+   return {
+      type: SORT_BY_ATTACK,
+      payload: order
+   }
 }
