@@ -11,8 +11,8 @@ const Nav = () => {
     const [hiddenNavbar, setHideNavbar] = useState(false);
 
     useEffect(() => {
-        window.innerWidth < 760 ? setHideNavbar(true) : setHideNavbar(false);   
-    }, [window.innerWidth]);    
+        setHideNavbar(true); 
+    }, []);    
 
     const showNavbar = () => {
         setHideNavbar(false);
