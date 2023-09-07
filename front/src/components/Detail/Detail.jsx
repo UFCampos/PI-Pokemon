@@ -32,7 +32,7 @@ const Detail = () => {
 
     return (
         <div className={styles.container}>
-            <img src={image} alt={name} />
+            <img className={styles.detailImage} src={image} alt={name} />
             <div className={styles.detail}>
                 <h1>{name}</h1>
                 <h3 className={styles.types}>Types: {eachType.map((type, index) => {
@@ -51,6 +51,7 @@ const Detail = () => {
                 {speed && <p>Speed: {speed} </p>}
                 {height && <p>Height: {height} </p>}
                 {weight && <p>Weight: {weight} </p>}
+                <p>ID: {id}</p>
             </div>
         </div>
     )

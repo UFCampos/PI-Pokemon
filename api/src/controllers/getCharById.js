@@ -39,7 +39,7 @@ async function getCharById(reqId) {
         // Extract relevant data from the API response
         const { name, id, sprites, gender, height, weight, types, stats } = data;
         const allTypes = types.map((type) => ({ name: type.type.name }));
-        const image = sprites.other.dream_world.front_default || sprites.front_default;
+        const image = sprites.versions['generation-v']['black-white'].animated.front_default || sprites.front_default;
 
         // Create a character object
         const pokemon = {

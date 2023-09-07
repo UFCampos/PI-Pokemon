@@ -12,7 +12,10 @@ const Nav = () => {
 
     useEffect(() => {
         setHideNavbar(true); 
-    }, []);    
+        if (window.innerWidth > 760) {
+            setHideNavbar(false);
+        }
+    }, [window.innerWidth]);    
 
     const showNavbar = () => {
         setHideNavbar(false);
@@ -31,7 +34,7 @@ const Nav = () => {
             ) : (
                 <div className={styles.navfix}>
                     {!hiddenNavbar && (
-                        <button onClick={() => hideNavbar()}>|||</button>
+                        <button className={styles.navClose} onClick={() => hideNavbar()}>|||</button>
                     )}
                     <div className={styles.navbar}>
                         <div className={styles['navbar-nav']}>

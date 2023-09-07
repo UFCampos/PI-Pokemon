@@ -54,6 +54,26 @@
   .rock{
     background-color: grey;
   }
+  .steel{
+    background-color: lightgray;
+  }
+  .ghost{
+    background-color: black;
+  }
+  .dragon{
+    background-color: purple;
+  }
+  .dark{
+    background-color: black;
+  }
+  .fairy{
+    background-color: pink;
+  }
+
+  .detailImage{
+    transform: scale(5);
+    margin-left: 5rem;
+  }
 
   .modal{
     position: fixed;
@@ -84,11 +104,6 @@
       margin: 0;
       font-size: 1.3rem;
       padding: 0.1rem;
-
-    img{
-        height: 2rem;
-        margin-bottom: -.5rem;
-      }
     }
   }    
 } 
