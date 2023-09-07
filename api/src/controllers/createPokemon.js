@@ -2,7 +2,7 @@ const { Pokemon} = require('../db.js');
 const addPokemonTypes = require('../helpers/addType.js');
 
 
-async function createPkmn(name, image, hp, attack, defense, speed, height, weight, types) {
+async function createPokemon(name, image, hp, attack, defense, speed, height, weight, types) {
 
     const pokemon = await Pokemon.create({
         name,
@@ -18,6 +18,7 @@ async function createPkmn(name, image, hp, attack, defense, speed, height, weigh
 
     await addPokemonTypes(pokemon, types);
 
+    return pokemon;
 }
 
-module.exports = createPkmn;
+module.exports = createPokemon;

@@ -35,7 +35,7 @@ async function getCharByName(reqName) {
             const pokemon = {
                 name,
                 id,
-                img,
+                image: img,
                 height,
                 weight,
                 hp: stats[0].base_stat,

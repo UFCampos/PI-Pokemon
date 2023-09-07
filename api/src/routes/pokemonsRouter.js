@@ -1,7 +1,7 @@
 const { Router } = require('express');
 
 //require handlers
-const {postPokemon, getAllPokemons, getPokemonById } = require('../handlers/pokemons');
+const {postPokemon, getAllPokemons, getPokemonById, deletePokemonById, updatePokemonById } = require('../handlers/pokemons');
 
 const pokemonsRouter = Router();
 
@@ -13,5 +13,11 @@ pokemonsRouter.post('/', postPokemon);
 
 // Get a specific pokemon by ID
 pokemonsRouter.get('/:id', getPokemonById);
+
+//Delete a pokemon by ID
+pokemonsRouter.delete('/:id', deletePokemonById);
+
+//Update a pokemon by ID
+pokemonsRouter.put('/:id', updatePokemonById);
 
 module.exports = pokemonsRouter;

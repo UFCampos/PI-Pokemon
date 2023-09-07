@@ -5,7 +5,7 @@ async function addPokemonTypes(pokemon, types) {
         for (const pktype of types) {
             const [newType] = await Type.findOrCreate({
                 where: {
-                    name: pktype
+                    name: pktype.name
                 }
             });
             await pokemon.addType(newType);

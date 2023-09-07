@@ -3,8 +3,11 @@ import modalStyles from '../Modal/Modal.module.scss'
 import styles from './Form.module.scss'
 import { useEffect, useState } from 'react'
 import validation from '../../utils/validation.js'
+import { useSelector } from 'react-redux'
 
 const Form = () => {
+    const allTypes = useSelector(state => state.allTypes)
+
     const [pokemon, setPokemon] = useState({
         name: '',
         image: '',
@@ -33,20 +36,46 @@ const Form = () => {
         e.preventDefault()
         const { name, image, types, hp, attack, defense, speed, height, weight } = pokemon
         const newPokemon = { name, image, types, hp, attack, defense, speed, height, weight }
-        await axios.post('http://localhost:3001/pokemon', newPokemon)
+        try {
+            await axios.post('http://localhost:3001/pokemons', newPokemon)
+        } catch (error) {
+            alert(error.message)
+            console.error(error)
+        }
     }
 
     const handleChange = (e) => {
         const key = e.target.name
         const value = e.target.value
-        setPokemon({ ...pokemon, [key]: value })
+        // const img = e.target.files ? e.target.files[0] : ''
+        setPokemon({ ...pokemon, [key]: value})
         validation({ ...pokemon, [key]: value }, errors, setErrors)
     }
+
+    const handleTypeChange = (e) => {
+        const value = e.target.value;
+        const newType = [{ name: value }];
+
+        if (pokemon.types.length > 2) {
+            setErrors({ ...errors, types: 'No puedes tener más de 2 tipos' });
+        }
+
+        setPokemon(prevState => ({
+            ...prevState,
+            types: [...prevState.types, ...newType]
+        }));
+    }
+
+    const handleDelete = (e) => {
+        e.preventDefault();
+        const updatedTypes = pokemon.types.filter((type) => type.name !== e.target.name);
+        setPokemon({ ...pokemon, types: updatedTypes });
+    };
 
     return (
         <>
         <div><h1>Crea tu Pokemon</h1></div>
-        <form action="" method="POST" className={styles.form}>
+        <form onSubmit={handleSubmit} action="" className={styles.form}>
 
             <div>
                 <label htmlFor="">Nombre: </label>
@@ -56,13 +85,18 @@ const Form = () => {
 
             <div>
                 <label htmlFor="">Imagen: </label>
-                <input type="text" value={pokemon.image} onChange={handleChange} name="image" placeholder='Imagen' />
+                <input type="file" value={pokemon.image} onChange={handleChange} name="image" placeholder='Imagen' />
                 {errors.image && <p>{errors.image}</p>}
             </div>
 
             <div>
                 <label htmlFor="">Tipos: </label>
-                <input type="text" value={pokemon.types} onChange={handleChange} name="types" placeholder='Tipos' />
+                <select onChange={handleTypeChange} name="types" id="">
+                    {allTypes.map((type) => {
+                        return <option value={type.name} key={type.name}>{type.name}</option>
+                    })}
+                </select>
+                {pokemon.types && pokemon.types.map((type) => <p onClick={handleDelete} name={type.name} key={type.name}>{type.name}</p>)}
                 {errors.types && <p>{errors.types}</p>}
             </div>
 

@@ -1,23 +1,20 @@
 import { useLocation } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import { useEffect} from "react"
-import { fetchContent } from "../../redux/actions"
+import { fetchContentId } from "../../redux/actions"
 import loading from "../../assets/detailBackground.webp"
 import styles from './Detail.module.scss'
-import poison from '../../../public/poison.png'
-import grass from '../../assets/grass.webp'
-
 const Detail = () => {
     const location = useLocation()
     const dispatch = useDispatch()
-    const {name, img, types, hp, attack, defense, speed, height, weight} = useSelector(state => state.modalContent)
+    const {name, image, types, hp, attack, defense, speed, height, weight} = useSelector(state => state.modalContent)
 
     const id = location.pathname.split('/')[2]
     useEffect(() => {
         document.title = 'Guessing pokemon...'
-        dispatch(fetchContent(id))
+        dispatch(fetchContentId(id))
         return () => {
-            dispatch(fetchContent(''))
+            dispatch(fetchContentId(''))
         }
     },[id])
     
@@ -35,16 +32,14 @@ const Detail = () => {
 
     return (
         <div className={styles.container}>
-            <img src={img} alt={name} />
+            <img src={image} alt={name} />
             <div className={styles.detail}>
                 <h1>{name}</h1>
                 <p className={styles.types}>Types: {eachType.map((type, index) => {
                     return (
                         <div>
-                            <span key={index} className={styles[type]}>
+                            <span key={index} className={styles.type}>
                                 {type}
-                                {type === 'poison' && <span> <img src={poison} alt="POISON.IMG" /></span>}
-                                {type === 'grass' && <span> <img src={grass} alt="GRASS.IMG" /></span>}
                             </span>
                             <br />
                         </div>

@@ -1,5 +1,15 @@
 import axios from 'axios';
-import { STORE_POKES, OPEN_MODAL, CLOSE_MODAL, MODAL_CONTENT, FETCH_TYPES, FILTER_BY_TYPE, PAGED_POKEMONS, SET_CURRENT_PAGE, SORT_BY_NAME } from './action-types'
+import { 
+   STORE_POKES, 
+   OPEN_MODAL, 
+   CLOSE_MODAL, 
+   MODAL_CONTENT, 
+   FETCH_TYPES, 
+   FILTER_BY_TYPE, 
+   PAGED_POKEMONS, 
+   SET_CURRENT_PAGE, 
+   SORT_BY_NAME,
+   POKEMON_BY_STORAGE } from './action-types'
 
 export const storePokes = () => {
    return async (dispatch) => {
@@ -20,6 +30,17 @@ export const openModal = () => ({
    type: CLOSE_MODAL,
  });
 
+ export const fetchContentId = (id) => {
+   return async (dispatch) => {
+      const endpoint = `http://localhost:3001/pokemons/${id}`;
+      const response = await axios(endpoint);
+      return dispatch({
+         type: MODAL_CONTENT,
+         payload: response.data
+      });
+   };
+ }
+
  export const fetchContent = (query) => {
    return async (dispatch) => {
       //regex to check for all numbers and A-Z
@@ -29,7 +50,7 @@ export const openModal = () => ({
             type: MODAL_CONTENT,
             payload: {} 
          })
-      }
+      } 
       const endpoint = `http://localhost:3001/pokemons?name=${query}`;
       const response = await axios(endpoint);
       return dispatch({
@@ -84,4 +105,11 @@ export const sortByName = (order) => {
          payload: order
       });
    }
+}
+
+export const pokemonByStorage = (store) => {
+   return {
+      type: POKEMON_BY_STORAGE,
+      payload: store
+  }
 }
