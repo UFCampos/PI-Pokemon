@@ -1,7 +1,7 @@
 @import '../../../public/variables';
 
 .container {
-  display: grid;
+  display: flex;
   justify-content: space-around;
   align-items: start;
   flex-wrap: wrap;
@@ -12,6 +12,7 @@
   background-color: darken($jet, 10);
   .cards{
     display: flex;
+    grid-template-columns: repeat(4, 1fr);
     margin: 0;  
     justify-content: space-around;
     align-items: start;

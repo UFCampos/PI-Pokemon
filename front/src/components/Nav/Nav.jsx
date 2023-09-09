@@ -27,46 +27,36 @@ const Nav = () => {
 
     return (
         <div>
-            {hiddenNavbar ?(
-                <div className={styles.navfix}>
+            <div className={styles.navButton}>
                 <button onClick={() => showNavbar()}>|||</button>
             </div>
-            ) : (
-                <div className={styles.navfix}>
-                    {!hiddenNavbar && (
-                        <button className={styles.navClose} onClick={() => hideNavbar()}>|||</button>
-                    )}
-                    <div className={styles.navbar}>
-                        <div className={styles['navbar-nav']}>
-                            <NavLink to="/home">
-                                <button
-                                    disabled={pathname === '/home'}
-                                    className={styles['navbar-item']}
-                                >
-                                    Home
-                                </button>
-                            </NavLink>
-                            <NavLink to="/about">
-                                <button
-                                    disabled={pathname === '/about'}
-                                    className={styles['navbar-item']}
-                                >
-                                    About me
-                                </button>
-                            </NavLink>
-                            <NavLink to="/create">
-                                <button
-                                    disabled={pathname === '/create'}
-                                    className={styles['navbar-item']}
-                                >
-                                    Create
-                                </button>
-                            </NavLink>
-                        </div>
-                        <SearchBar />
+            <div className={hiddenNavbar ? styles.navbarHidden : styles.navfix}>
+                {!hiddenNavbar && (
+                    <button className={styles.navClose} onClick={() => hideNavbar()}>|||</button>
+                )}
+                <div className={styles.navbar}>
+                    <div className={styles['navbar-nav']}>
+                        <NavLink to="/home" className={styles['navbar-item']}>
+                            <button
+                                disabled={pathname === '/home'}
+
+                            >
+                                Home
+                            </button>
+                        </NavLink>
+                        <NavLink to="/create" className={styles['navbar-item']}>
+                            <button
+                                disabled={pathname === '/create'}
+                            >
+                                Create
+                            </button>
+                        </NavLink>
                     </div>
+                    <NavLink to="/home">
+                        <SearchBar />
+                    </NavLink>
                 </div>
-            )}
+            </div>
         </div>
     );
 };

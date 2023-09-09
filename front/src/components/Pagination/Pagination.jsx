@@ -3,7 +3,7 @@ import { pagedPokemons, setCurrentPage, filterByType } from '../../redux/actions
 import styles from '../Cards/Cards.module.scss';
 import { useState, useEffect } from 'react';
 
-const Pagination = ({ currentPage, handlePageChange, filteredPokemons, pokemonByStorage }) => {
+const Pagination = ({ currentPage, filteredPokemons, pokemonByStorage }) => {
   const dispatch = useDispatch();
 
   const pokemonsPerPage = 12;

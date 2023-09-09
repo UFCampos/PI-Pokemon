@@ -7,6 +7,9 @@
   background-color: lighten($jet, 10);
   color: $melon;
   a{
+    &:link{
+      text-decoration: none;
+    }
     text-decoration: none;
   }
 }  

@@ -22,32 +22,30 @@ async function getCharByName(reqName) {
 
     // If pokemonDB is an empty object, try to fetch from the external API
     if (!pokemonDB) {
-        try {
-            // Fetch character information from the external API
-            const data = await fetchPokemonData(reqName);
-            
-            // Extract relevant data from the API response
-            const { name, id, sprites, height, weight, stats, types, gender } = data;
-            const img = sprites.other.dream_world.front_default || sprites.front_default;
-            const allTypes = types.map((type) => ({ name: type.type.name }));
+        // Fetch character information from the external API
+        const data = await fetchPokemonData(reqName);
 
-            // Create a character object
-            const pokemon = {
-                name,
-                id,
-                image: img,
-                height,
-                weight,
-                hp: stats[0].base_stat,
-                attack: stats[1].base_stat,
-                defense: stats[2].base_stat,
-                speed: stats[5].base_stat,
-                types: allTypes,
-                gender,
-            };
+        // Extract relevant data from the API response
+        const { name, id, sprites, height, weight, stats, types, gender } = data;
+        const img = sprites.other.dream_world.front_default || sprites.front_default;
+        const allTypes = types.map((type) => ({ name: type.type.name }));
 
-            return pokemon;
-        } catch (err) {
+        // Create a character object
+        const pokemon = {
+            name,
+            id,
+            image: img,
+            height,
+            weight,
+            hp: stats[0].base_stat,
+            attack: stats[1].base_stat,
+            defense: stats[2].base_stat,
+            speed: stats[5].base_stat,
+            types: allTypes,
+            gender,
+        };
+
+        if (!pokemonDB.name) {
             throw new Error('No existe un pokemon con ese nombre');
         }
     }

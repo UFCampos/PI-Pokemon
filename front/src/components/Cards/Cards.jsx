@@ -35,35 +35,31 @@ const Cards = () => {
     },[pokemonByStorage, filteredPokemons]);
 
     // Handle the page change event
-    const handlePageChange = (page) => {
-        setCurrentPage(page);
-    };
+
 
     return (
         <>
             {loadingFlag ? <Loading /> :
-            <div className={styles.container}>
-                <div className={styles.buttonsContainer}>
-                    <Filters />
-                    <Pagination 
-                        currentPage={currentPage} 
-                        handlePageChange={handlePageChange} 
-                        filteredPokemons={filteredPokemons} 
-                        pokemonByStorage={pokemonByStorage} 
+                <div className={styles.container}>
+                    <div className={styles.buttonsContainer}>
+                        <Filters />
+                        <Pagination
+                            currentPage={currentPage}
+                            filteredPokemons={filteredPokemons}
+                            pokemonByStorage={pokemonByStorage}
+                        />
+                    </div>
+                    <div className={styles.cards}>
+                        {pagedPokemons.length ? pagedPokemons.map((pokemon) => {
+                            return <Card key={pokemon.id} {...pokemon} />;
+                        }) : <h1>No pokemons found</h1>}
+                    </div>
+                    <Pagination
+                        currentPage={currentPage}
+                        filteredPokemons={filteredPokemons}
+                        allPokemons={pokemonByStorage}
                     />
-                </div>
-                <div className={styles.cards}>
-                    {pagedPokemons.length? pagedPokemons.map((pokemon) => {
-                        return <Card key={pokemon.id} {...pokemon} />;
-                    }) : <h1>No pokemons found</h1>}
-                </div>
-                <Pagination 
-                    currentPage={currentPage} 
-                    handlePageChange={handlePageChange} 
-                    filteredPokemons={filteredPokemons} 
-                    allPokemons={pokemonByStorage} 
-                />
-            </div>}
+                </div>}
         </>
     );
 }

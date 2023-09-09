@@ -27,7 +27,7 @@ const SearchBar = () => {
         <div className={styles.search}>
             <div><Modal isOpen={isModalOpen} children={modalContent}/></div>
             <input type="text" placeholder="ID o Nombre de Pokemon" value={input} onChange={handleChange} />
-            <button onClick={() => dispatchSearch(input)}>B</button>
+            <button onClick={() => dispatchSearch(input)}>&#x1F50E;</button>
         </div>
     )
 }

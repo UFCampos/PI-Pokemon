@@ -1,5 +1,5 @@
 const { Pokemon} = require('../db.js');
-const addPokemonTypes = require('../helpers/addType.js');
+const addPokemonTypes = require('../helpers/Types/addType.js');
 
 
 async function createPokemon(name, image, hp, attack, defense, speed, height, weight, types) {

@@ -11,6 +11,11 @@ const Filters = () => {
 
     const allTypes = useSelector(state => state.allTypes)
 
+    const handleChangeType = (e) => {
+        console.log('DISPATCH');
+        dispatch(filterByType(e.target.value))
+    }
+
     const handleChange = (e) => {
         switch (e.target.value) {
             case 'asc':
@@ -28,7 +33,7 @@ const Filters = () => {
 
     return (
         <div className={styles['filter-container']}>
-            <select className={styles.filter} name="Type" onChange={(e) => dispatch(filterByType(e.target.value))}>
+            <select className={styles.filter} name="Type" onChange={handleChangeType}>
                 <option value={'all'}>ALL</option>
                 {allTypes.map((type) => {
                     return <option value={type.name} key={type.name}>{type.name}</option>

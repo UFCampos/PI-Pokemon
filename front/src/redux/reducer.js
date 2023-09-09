@@ -71,12 +71,10 @@ const reducer = (state = initialState, { type, payload }) => {
 
     case FILTER_BY_TYPE:
       const newFilteredPokemons = state.pokemonByStorage.filter(pokemon => {
-        for (const type of pokemon.types) {
-          if (type.name === payload || payload === 'all') {
-            return true;
-          }
+        if (payload === 'all') {
+          return pokemon;
         }
-        return false;
+        return pokemon.types.some(type => type.name === payload);
       });
       return {
         ...state,

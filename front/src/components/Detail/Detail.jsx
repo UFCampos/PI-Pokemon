@@ -38,9 +38,9 @@ const Detail = () => {
                 <h3 className={styles.types}>Types: {eachType.map((type, index) => {
                     return (
                         <div key={index}>
-                            <span key={index} className={styles[`${type}`]}>
+                            <p key={index} className={styles[`${type}`]}>
                                 {type}
-                            </span>
+                            </p>
                             <br />
                         </div>
                     )
