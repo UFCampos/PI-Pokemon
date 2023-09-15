@@ -17,7 +17,8 @@ const Form = () => {
         defense: '',
         speed: '',
         height: '',
-        weight: ''
+        weight: '',
+        owner: "",
     })
 
     const [errors, setErrors] = useState({
@@ -28,14 +29,15 @@ const Form = () => {
         defense: '',
         speed: '',
         height: '',
-        weight: ''
+        weight: '',
+        owner:""
     })
 
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const { name, image, types, hp, attack, defense, speed, height, weight } = pokemon
-        const newPokemon = { name, image, types, hp, attack, defense, speed, height, weight }
+        const { name, image, types, hp, attack, defense, speed, height, weight, owner } = pokemon
+        const newPokemon = { name, image, types, hp, attack, defense, speed, height, weight, owner }
         try {
             await axios.post('http://localhost:3001/pokemons', newPokemon)
             alert('Pokemon creado con éxito')
@@ -48,7 +50,6 @@ const Form = () => {
     const handleChange = (e) => {
         const key = e.target.name
         const value = e.target.value
-        // const img = e.target.files ? e.target.files[0] : ''
         setPokemon({ ...pokemon, [key]: value})
         validation({ ...pokemon, [key]: value }, errors, setErrors)
     }
@@ -59,6 +60,8 @@ const Form = () => {
 
         if (pokemon.types.length > 2) {
             setErrors({ ...errors, types: 'No puedes tener más de 2 tipos' });
+        } else {
+            setErrors({ ...errors, types: '' });
         }
 
         setPokemon(prevState => ({
@@ -135,6 +138,11 @@ const Form = () => {
                 <label htmlFor="">Peso: </label>
                 <input type="text" value={pokemon.weight} onChange={handleChange} name="weight" placeholder='Peso' />
                 {errors.weight && <p>{errors.weight}</p>}
+            </div>
+            <div>
+                <label htmlFor="">Dueño: </label>
+                <input type="text" value={pokemon.owner} onChange={handleChange} name="owner" placeholder='Dueño' />
+                {/* {errors.owner && <p>{errors.owner}</p>} */}
             </div>
 
             <button>Crear</button>

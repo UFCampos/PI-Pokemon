@@ -7,7 +7,7 @@ import styles from './Detail.module.scss'
 const Detail = () => {
     const location = useLocation()
     const dispatch = useDispatch()
-    const {name, image, types, hp, attack, defense, speed, height, weight} = useSelector(state => state.modalContent)
+    const {name, image, types, hp, attack, defense, speed, height, weight, owner} = useSelector(state => state.modalContent)
 
     const id = location.pathname.split('/')[2]
     useEffect(() => {
@@ -48,6 +48,7 @@ const Detail = () => {
                 <p>HP: {hp} </p>
                 <p>Attack: {attack} </p>
                 <p>Defense: {defense}</p>
+                <p>Dueño: {owner}</p>
                 {speed && <p>Speed: {speed} </p>}
                 {height && <p>Height: {height} </p>}
                 {weight && <p>Weight: {weight} </p>}

@@ -10,12 +10,12 @@ const { fetchPokemonData } = require('../helpers/apiHelpers.js');
  * @returns {Promise<Object>} - The character information.
  */
 async function getCharByName(reqName) {
-    reqName.toLowerCase();
+    const reqNameLowCase = reqName.toLowerCase();
 
     // Try to find the character in the local database
     const pokemonDB = await Pokemon.findOne({
         where: {
-            name: { [Op.iLike]: `%${reqName}%` }
+            name: { [Op.iLike]: `%${reqNameLowCase}%` }
         },
         include: [{ model: Type, as: 'types', through: { attributes: [] } }]
     });
@@ -23,7 +23,7 @@ async function getCharByName(reqName) {
     // If pokemonDB is an empty object, try to fetch from the external API
     if (!pokemonDB) {
         // Fetch character information from the external API
-        const data = await fetchPokemonData(reqName);
+        const data = await fetchPokemonData(reqNameLowCase);
 
         // Extract relevant data from the API response
         const { name, id, sprites, height, weight, stats, types, gender } = data;
@@ -45,9 +45,8 @@ async function getCharByName(reqName) {
             gender,
         };
 
-        if (!pokemonDB.name) {
-            throw new Error('No existe un pokemon con ese nombre');
-        }
+        return pokemon
+
     }
 
     return pokemonDB;

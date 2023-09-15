@@ -6,9 +6,9 @@ const getCharByName = require('../controllers/getCharByName');
 
 const postPokemon = async (req, res) => {
     try {
-        const { name, image, hp, attack, defense, speed, height, weight, types } = req.body;
-        const pokemon = await createPokemon(name, image, hp, attack, defense, speed, height, weight, types);
-        res.status(201).json({ message: `New pokemon ${pokemon} created successfully` });
+        const { name, image, hp, attack, defense, speed, height, weight, types, owner } = req.body;
+        const pokemon = await createPokemon(name, image, hp, attack, defense, speed, height, weight, types, owner);
+        res.status(201).json({ message: `New pokemon ${pokemon.name} (id: ${pokemon.id}) created successfully` });
     } catch (error) {
         res.status(400).send(error.message);
     }

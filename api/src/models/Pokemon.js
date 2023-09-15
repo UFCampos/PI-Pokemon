@@ -56,7 +56,12 @@ module.exports = (sequelize) => {
       validate: {
         min: 0
       }
-    }
+    },
+    owner: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: "Libre"
+    },
   }, {
     timestamps: false
   });

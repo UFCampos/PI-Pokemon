@@ -1,6 +1,6 @@
 
 const validation = (input, errors, setErrors) => {
-    const { name, image, types, hp, attack, defense, speed, height, weight } = input;
+    const { name, image, hp, attack, defense, speed, height, weight } = input;
     const checkName = /^[a-zA-Z]+$/;
     const checkInteger = /^([1-9]\d{0,2}|999)$/;
     const checkURL = /^(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?$/;

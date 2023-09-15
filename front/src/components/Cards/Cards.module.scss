@@ -11,6 +11,7 @@
   gap: 1rem; 
   background-color: darken($jet, 10);
   .cards{
+    overflow: auto;
     display: flex;
     grid-template-columns: repeat(4, 1fr);
     margin: 0;  
